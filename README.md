@@ -22,7 +22,7 @@ Gif goes here
 Some cursed nonsense needs figure if this will even work
 
 ### Dialogue Tree Builder
-I built too many dialogue trees. Needs finishing
+I built too many dialogue trees, so I made a combo of my standard switches for the sake of saving myself some pain in the visual editor
 
 
 ## Resources
