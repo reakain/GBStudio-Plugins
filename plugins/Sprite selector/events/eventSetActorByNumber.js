@@ -4,7 +4,7 @@ export const groups = ["EVENT_GROUP_ACTOR"];
 export const name = "Set Actor Sprite By Number";
 export const description = "Set an actor to a spritesheet by number";
 
-const MAX_OPTIONS = 16;
+const MAX_OPTIONS = 32;
 
 export const fields = [].concat(
     [

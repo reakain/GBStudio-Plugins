@@ -4,7 +4,7 @@ export const groups = ["EVENT_GROUP_ACTOR"];
 export const name = "Sprite Selector";
 export const description = "Let characters select a sprite with this script.";
 
-const MAX_OPTIONS = 16;
+const MAX_OPTIONS = 32;
 
 export const fields = [].concat(
     [
