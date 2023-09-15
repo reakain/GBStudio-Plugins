@@ -11,12 +11,13 @@ Copy the plugins folder to the folder your assets folder is stored in.
 ### Actor Hop
 Make your actor do a little hop, or several hops with a set pause between them. Shows up as Actor > Actor Hop. You select an actor, provide the number of hops, and the pause interval. (6 frames is the default, which is roughly 0.1 seconds)
 
-Gif goes here
+
+<img alt="Example of an actor performing repeated hops" src="./images/actor_hop.gif" width="50%">
 
 ### Social Hop
 Do sequential number sets of hops between two actors.
 
-Gif goes here
+<img alt="Example of a pair of actors performing repeated hops, growing in amount as they alternate" src="./images/social_hop.gif" width="50%">
 
 ### Player Sprite Select
 Some cursed nonsense needs figure if this will even work
@@ -26,6 +27,8 @@ I built too many dialogue trees, so I made a combo of my standard switches for t
 
 ### Calendar Updater
 Basically, you want to have a calendar in your game? Do you want to visually track what day it is? Add this plugin, make a scene with the calendar background and a scene with calendar tiles. Add the Calendar Updater event to the scene with the calendar background, and set the variables as listed. (First one is the variable you use for tracking the day, the rest should be unique variables. I recomment Local 0-4)
+
+<img alt="Example of an in game calendar, on the fourth day of the month" src="./images/calendar_example.PNG" width="50%">
 
 ## Resources
 All the other plugin repos and guides for GB Studio that I know of.
