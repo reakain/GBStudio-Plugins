@@ -1,0 +1,37 @@
+{
+    "values": [
+        {
+            "key": "GetUpSpoons",
+            "type": "variable",
+            "label": "Get Up Spoons Var",
+            "description": "Variable for tracking which of the sprites we have currently selected.",
+            "defaultValue": "LAST_VARIABLE",
+            "numValue": 3
+        },
+        {
+            "key": "OrderFoodSpoons",
+            "type": "variable",
+            "label": "OrderFoodSpoons Var",
+            "description": "Variable for tracking which of the sprites we have currently selected.",
+            "defaultValue": "LAST_VARIABLE",
+            "numValue": 3
+        },
+        {
+            "key": "LeaveHomeSpoons",
+            "type": "variable",
+            "label": "LeaveHomeSpoons Var",
+            "description": "Variable for tracking which of the sprites we have currently selected.",
+            "defaultValue": "LAST_VARIABLE",
+            "numValue": 6
+        },
+        {
+            "key": "TalkToCashierSpoons",
+            "type": "variable",
+            "label": "TalkToCashierSpoons Var",
+            "description": "Variable for tracking which of the sprites we have currently selected.",
+            "defaultValue": "LAST_VARIABLE",
+            "numValue": 12
+        }
+    ]
+    
+}

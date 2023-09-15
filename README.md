@@ -24,6 +24,8 @@ Some cursed nonsense needs figure if this will even work
 ### Dialogue Tree Builder
 I built too many dialogue trees, so I made a combo of my standard switches for the sake of saving myself some pain in the visual editor
 
+### Calendar Updater
+Basically, you want to have a calendar in your game? Do you want to visually track what day it is? Add this plugin, make a scene with the calendar background and a scene with calendar tiles. Add the Calendar Updater event to the scene with the calendar background, and set the variables as listed. (First one is the variable you use for tracking the day, the rest should be unique variables. I recomment Local 0-4)
 
 ## Resources
 All the other plugin repos and guides for GB Studio that I know of.
