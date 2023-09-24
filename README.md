@@ -30,6 +30,9 @@ Basically, you want to have a calendar in your game? Do you want to visually tra
 
 <img alt="Example of an in game calendar, on the fourth day of the month" src="./images/calendar_example.PNG" width="50%">
 
+### Actor Dialogue Cycler
+Do you want your actor to iterate through a set of dialogue options every time you interact with em? That's what this is. I have a checkbox to randomize order but that currently does nothing. Can have up to 99 dialogue options. Should work with avatars and multiple text boxes.
+
 ## Resources
 All the other plugin repos and guides for GB Studio that I know of.
 
