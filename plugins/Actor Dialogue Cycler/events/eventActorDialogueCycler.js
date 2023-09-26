@@ -6,7 +6,7 @@ export const id = "EVENT_ACTOR_DIALOGUE_CYCLER";
 export const groups = ["EVENT_GROUP_ACTOR", "EVENT_GROUP_DIALOGUE"];
 export const name = "Actor Dialogue Cycler";
 export const description = "Do you want an actor to cycle through a bunch of dialogue options? Here you go!";
-export const MAX_OPTIONS = 99;
+export const MAX_OPTIONS = 16;
 
 
 export const fields = [].concat(
@@ -33,8 +33,17 @@ export const fields = [].concat(
     },
     {
       key: "randomShuffle",
-      label: "Randomize",
-      description: "RAndomize the order they cycle through. Currently does nothing",
+      label: "Shuffle Order",
+      description: "Randomize the order they cycle through. Currently does nothing",
+      type: "checkbox",
+      width: "50%",
+      defaultValue: false,
+      alignCheckbox: true,
+    },
+    {
+      key: "randomPick",
+      label: "Random Pick",
+      description: "Picks at random from the list every time it triggers.",
       type: "checkbox",
       width: "50%",
       defaultValue: false,
@@ -86,7 +95,7 @@ export const fields = [].concat(
 
 export const compile = (input, helpers) => {
   const { textDialogue, ifExpression, _addComment, _switchVariable, _addNL, _label, 
-    variableSetToValue, getNextLabel, caseVariableValue, _jump, variableValueOperation} = helpers;
+    variableSetToValue, getNextLabel, variableSetToRandom, _jump, variableValueOperation} = helpers;
 
   _addComment("Actor Dialogue Cycler");
 
@@ -94,8 +103,78 @@ export const compile = (input, helpers) => {
   //const loopId = getNextLabel();
 
   // If our variable is not within the bounds of our number of choices, reset it to zero:
-  ifExpression(input.variable+"<0||" +input.variable+">="+input.items, () => { variableSetToValue(input.variable, 0);});
+  if (input.randomPick){
+    _addComment("Get Random dialogue option");
+    variableSetToRandom(input.variable, 0, input.items);
+  }
+  else{
+    _addComment("Get Next dialogue option");
+    ifExpression(input.variable+"<0||" +input.variable+">="+input.items, () => { variableSetToValue(input.variable, 0);});
+  }
 
+  // // If we have more than 16 items...
+  // if (input.items > 16)
+  // {
+  //   numSwitches = Math.ceil(input.items/16);
+  //   currentNum = -1;
+  //   const choiceSets = Array(numSwitches)
+  //               .fill()
+  //               .reduce((memo, _, i) => {
+  //                 choiceSets[i] = Array(input.items)
+  //                 .fill()
+  //               .reduce((memo, _, j) => {
+  //                 currentNum = currentNum + 1;
+  //                 const key = currentNum;
+  //                 if (!memo[key]) {
+  //                   return {
+  //                     ...memo,
+  //                     [key]: input[`option${currentNum}`],//textDialogue(input[`option${i}`] || " ", input[`avatarId${i}`]),
+  //                   };
+  //                 }
+  //                 return memo;
+  //               }, {});
+  //               });
+  
+  //   for (let i = 0; i < numSwitches; i++)
+  //   {
+  //     // At this point we've aggressed the code from inside the "caseVariableValue" helper function function
+  //   const caseKeys = Object.keys(choiceSets[i]);
+  //   //const numCases = caseKeys.length;
+
+  //   const caseLabels = caseKeys.map(() => getNextLabel());
+  //   }
+
+  //   const endLabel = getNextLabel();
+
+  //   _addComment(`Switch Variable`);
+  //   _switchVariable(
+  //     input.variable,
+  //     caseLabels.map((label, i) => [Number(caseKeys[i]), `${label}$`]),
+  //     0
+  //   );
+  //   _addNL();
+
+  //     if (i > 0)
+  //     {
+
+  //     }
+  //   // "Else option, for more than 16"
+  //   //this._compilePath(falsePath);
+  //   //this._jump(endLabel);
+
+  //   // Cases
+  //   for (let i = 0; i < input.items; i++) {
+  //     _addComment(`case ${i}:`);
+  //     _label(caseLabels[i]);
+  //     // There the original code compiled path options, we instead just show the text dialogue
+  //     textDialogue(input[`option${i}`] || " ", input[`avatarId${i}`])
+  //     _jump(endLabel);
+  //   }
+  //   _label(endLabel);
+
+  //   _addNL();
+  //   }
+  // }
   // Play dialogue associated with current variable number
   const choiceLookup = Array(input.items)
       .fill()
@@ -112,6 +191,7 @@ export const compile = (input, helpers) => {
     
     //caseVariableValue(input.variable, choiceLookup, []);
 
+    // At this point we've aggressed the code from inside the "caseVariableValue" helper function function
     const caseKeys = Object.keys(choiceLookup);
     //const numCases = caseKeys.length;
 
@@ -126,20 +206,26 @@ export const compile = (input, helpers) => {
     );
     _addNL();
 
+    // "Else option, for more than 16?"
+    //this._compilePath(falsePath);
+    //this._jump(endLabel);
+
     // Cases
     for (let i = 0; i < input.items; i++) {
       _addComment(`case ${i}:`);
       _label(caseLabels[i]);
+      // There the original code compiled path options, we instead just show the text dialogue
       textDialogue(input[`option${i}`] || " ", input[`avatarId${i}`])
-      //this._compilePath(cases[caseKeys[i]]);
       _jump(endLabel);
     }
     _label(endLabel);
 
     _addNL();
 
-  // Increment variable number
+  if (!input.randomPick){
+  // Increment variable number, we don't have to bother if we're randomly picking
   variableValueOperation(input.variable, ".ADD", 1);
+  }
   
 
 
